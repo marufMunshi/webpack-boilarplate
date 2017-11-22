@@ -2,7 +2,7 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var extractPlugin = new ExtractTextPlugin({
-    filename: 'bundle.css',
+    filename: 'bundle.css'
 });
 
 module.exports = {
@@ -44,7 +44,8 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             name: '[name].[ext]',
-                            outputPath: 'images/'
+                            outputPath: 'images/',
+                            publicPath: ''
                         }
                     }
                 ]
