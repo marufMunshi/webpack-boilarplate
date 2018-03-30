@@ -1,9 +1,10 @@
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const webpack = require('webpack');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-var extractPlugin = new ExtractTextPlugin({
-    filename: 'bundle.css'
-});
+
 
 module.exports = {
     entry: './src/js/bootstrap.js',
@@ -12,6 +13,7 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/dist'
     },
+    devtool: "source-map",
     module: {
         rules: [
             {
@@ -26,9 +28,20 @@ module.exports = {
                 ]
             },
             {
-                test: /\.scss$/,
+                test: /\.(scss|sass)$/,
                 use: extractPlugin.extract({
-                    use: ['css-loader', 'sass-loader']
+                    use: [
+                        {
+                            loader: 'css-loader', options: {
+                                sourceMap: true
+                            }
+                        },
+                        {
+                            loader: 'sass-loader', options: {
+                                sourceMap: true
+                            }
+                        }
+                    ]
                 })
             },
             {
@@ -53,6 +66,20 @@ module.exports = {
         ]
     },
     plugins: [
-        extractPlugin
+        new ExtractTextPlugin({
+            filename: 'bundle.css'
+        }),
+        new OptimizeCssAssetsPlugin({
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: {
+                discardComments: {
+                    removeAll: true
+                }
+            },
+            canPrint: true
+        }),
+        new UglifyJsPlugin({
+            cache: true
+        })
     ]
 };

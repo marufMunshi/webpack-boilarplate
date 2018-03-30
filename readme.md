@@ -5,6 +5,10 @@ This is a simple **Webpack Boilarplate**. That
   - Compile Latest JS using Babel
   - Compile SASS
   - Auto Reload when css or js change
+  - Auto Prefix when needed
+  - Minify JS using UglifyJSPlugin for Production
+  - Minify CSS using OptimizeCssAssetsPlugin for Production
+  - Seperated Confgi for Dev & Prod 
 
 
 ### Installation
@@ -22,7 +26,6 @@ run "npm run build" for production
 
  - Separate config for deterministic hash
  - Add html auto reload
- - Add sharing IP
 
 License
 ----
