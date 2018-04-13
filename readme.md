@@ -8,7 +8,7 @@ This is a simple **Webpack Boilarplate**. That
   - Auto Prefix when needed
   - Minify JS using UglifyJSPlugin for Production
   - Minify CSS using OptimizeCssAssetsPlugin for Production
-  - Seperated Confgi for Dev & Prod 
+  - Seperated Config for Dev & Prod 
 
 
 ### Installation
@@ -24,7 +24,7 @@ run "npm run build" for production
 
 ### Todos
 
- - Separate config for deterministic hash
+ - Config for deterministic hash
  - Add html auto reload
 
 License

@@ -5,7 +5,6 @@ const webpack = require('webpack');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 
-
 module.exports = {
     entry: './src/js/bootstrap.js',
     output: {
@@ -14,6 +13,7 @@ module.exports = {
         publicPath: '/dist'
     },
     devtool: "source-map",
+    mode: 'production',
     module: {
         rules: [
             {
@@ -29,7 +29,7 @@ module.exports = {
             },
             {
                 test: /\.(scss|sass)$/,
-                use: extractPlugin.extract({
+                use: ExtractTextPlugin.extract({
                     use: [
                         {
                             loader: 'css-loader', options: {
@@ -46,7 +46,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: extractPlugin.extract({
+                use: ExtractTextPlugin.extract({
                     use: ['css-loader']
                 })
             },
@@ -79,7 +79,7 @@ module.exports = {
             canPrint: true
         }),
         new UglifyJsPlugin({
-            cache: true
+            sourceMap: true
         })
     ]
 };

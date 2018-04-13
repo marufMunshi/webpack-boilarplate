@@ -1,6 +1,6 @@
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 module.exports = {
     entry: './src/js/bootstrap.js',
@@ -11,11 +11,10 @@ module.exports = {
     },
     devServer: {
         port: 3000,
-        // hot: true,
-        open: true,
-        // watch: true
+        open: true
     },
-    devtool: "source-map",
+    devtool: 'source-map',
+    mode: 'development',
     module: {
         rules: [
             {
@@ -34,17 +33,20 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     use: [
                         {
-                            loader: 'css-loader', options: {
+                            loader: 'css-loader',
+                            options: {
                                 sourceMap: true
                             }
                         },
                         {
-                            loader: 'postcss-loader', options: {
+                            loader: 'postcss-loader',
+                            options: {
                                 sourceMap: true
                             }
                         },
                         {
-                            loader: 'sass-loader', options: {
+                            loader: 'sass-loader',
+                            options: {
                                 sourceMap: true
                             }
                         }
@@ -54,7 +56,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
-                    use: ["css-loader", "postcss-loader"]
+                    use: ['css-loader', 'postcss-loader']
                 })
             },
             {
@@ -75,7 +77,7 @@ module.exports = {
     plugins: [
         new ExtractTextPlugin({
             filename: 'bundle.css'
-        }),
+        })
         // new BrowserSyncPlugin(
         //     // BrowserSync options
         //     {
@@ -96,4 +98,4 @@ module.exports = {
         //     // }
         // )
     ]
-};
+}
