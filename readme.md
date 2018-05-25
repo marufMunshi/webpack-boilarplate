@@ -9,6 +9,7 @@ This is a simple **Webpack Boilarplate**. That
   - Minify JS using UglifyJSPlugin for Production
   - Minify CSS using OptimizeCssAssetsPlugin for Production
   - Seperated Config for Dev & Prod 
+  - Add Flexbox Autoprfix support for older browser
 
 
 ### Installation
