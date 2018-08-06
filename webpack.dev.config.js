@@ -1,6 +1,6 @@
-const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: './src/js/bootstrap.js',
@@ -19,6 +19,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'babel-loader',
@@ -33,14 +34,12 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     use: [
                         {
-                            loader: 'css-loader',
-                            options: {
+                            loader: 'css-loader', options: {
                                 sourceMap: true
                             }
                         },
                         {
-                            loader: 'postcss-loader',
-                            options: {
+                            loader: 'postcss-loader', options: {
                                 sourceMap: true
                             }
                         },
@@ -48,8 +47,7 @@ module.exports = {
                             loader: 'resolve-url-loader'
                         },
                         {
-                            loader: 'sass-loader',
-                            options: {
+                            loader: 'sass-loader', options: {
                                 sourceMap: true
                             }
                         }
@@ -90,27 +88,29 @@ module.exports = {
         ]
     },
     plugins: [
-    new ExtractTextPlugin({
-        filename: 'bundle.css'
-    })
-    // new BrowserSyncPlugin(
-    //     // BrowserSync options
-    //     {
-    //         // browse to http://localhost:3000/ during development
-    //         host: 'localhost',
-    //         port: 3000,
-    //         // proxy the Webpack Dev Server endpoint
-    //         // (which should be serving on http://localhost:3100/)
-    //         // through BrowserSync
-    //         proxy: 'http://localhost:3100/',
-    //         // server: { baseDir: ['./'] }
-    //     },
-    //     // // plugin options
-    //     // {
-    //     //     // prevent BrowserSync from reloading the page
-    //     //     // and let Webpack Dev Server take care of this
-    //     //     reload: false
-    //     // }
-    // )
+        new ExtractTextPlugin({
+            filename: 'bundle.css'
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            tether: 'tether',
+            Tether: 'tether',
+            'window.Tether': 'tether',
+            Popper: ['popper.js', 'default'],
+            'window.Tether': 'tether',
+            Alert: 'exports-loader?Alert!bootstrap/js/dist/alert',
+            Button: 'exports-loader?Button!bootstrap/js/dist/button',
+            Carousel: 'exports-loader?Carousel!bootstrap/js/dist/carousel',
+            Collapse: 'exports-loader?Collapse!bootstrap/js/dist/collapse',
+            Dropdown: 'exports-loader?Dropdown!bootstrap/js/dist/dropdown',
+            Modal: 'exports-loader?Modal!bootstrap/js/dist/modal',
+            Popover: 'exports-loader?Popover!bootstrap/js/dist/popover',
+            Scrollspy: 'exports-loader?Scrollspy!bootstrap/js/dist/scrollspy',
+            Tab: 'exports-loader?Tab!bootstrap/js/dist/tab',
+            Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
+            Util: 'exports-loader?Util!bootstrap/js/dist/util'
+        })
     ]
 }
