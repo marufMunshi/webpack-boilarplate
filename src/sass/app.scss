@@ -1,6 +1,13 @@
 //Import SASS files
-@import 'partials/_basic.scss';
 
+@import 'partials/_bootstrap-import.scss';
+
+@import 'partials/_basic.scss';
+@import 'partials/_font.scss';
+
+body{
+    font-family: 'Merriweather', serif, 'CharukolaUltraLight';
+}
 
 header {
     width: 70%;
@@ -11,5 +18,10 @@ header {
         background: white;
         border-bottom: 2px solid #333;
         margin-bottom: 20px;
+        font-weight: normal;
     }
+
+    // .bangla {
+    //     font-family: 'CharukolaUltraLight'; 
+    // }
 }
